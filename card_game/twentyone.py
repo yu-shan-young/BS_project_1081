@@ -6,9 +6,10 @@
 
 import random
 
-##poker是牌, card是對應的值, again用來判斷是否繼續玩
+##poker是牌, card是對應的值, num是每個數字的張數, again用來判斷是否繼續玩
 poker=["A","2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 card={"A":1 or 11, "2":2, "3":3, "4":4, "5":5, "6":6, "7":7, "8":8, "9":9, "10":10, "J":10, "Q":10, "K":10}
+num={"A":4, "2":4, "3":4, "4":4, "5":4, "6":4, "7":4, "8":4, "9":4, "10":4, "J":4, "Q":4, "K":4}
 again = "y"
 
 ##用來加牌
@@ -16,8 +17,11 @@ def add(man, times):
     i=0
     while i<times:
         newc=random.choice(poker)
-        man.append(newc)
-        i=i+1
+        if (num[newc]>0):
+            man.append(newc)
+            num[newc] = num[newc]-1
+            i=i+1
+            
 
 ##用來判斷error massage
 def error(cmd, msg):
